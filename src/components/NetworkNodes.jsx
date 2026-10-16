@@ -1,0 +1,6 @@
+import { ArrowRight, Radio, Signal, Wifi } from 'lucide-react'
+import { nodes } from '../data/mockData'
+
+export default function NetworkNodes({ full = false }) {
+  return <section className={`panel nodes-panel ${full ? 'nodes-full' : ''}`}><div className="panel-heading"><div><h2>Network & nodes</h2><p>Connectivity overview · simulated</p></div><span className="network-health"><i /> Mesh health 94%</span></div><div className="node-list">{nodes.map((node) => <article className="node-row" key={node.id}><div className="node-icon"><Radio size={17} /></div><div className="node-main"><strong>{node.id}</strong><span>{node.role}</span></div><div className="node-signal"><Signal size={14} /><span>{node.signal}</span></div><span className={`node-status ${node.status === 'Connected' ? 'connected' : 'syncing'}`}><i />{node.status}</span><span className="node-pending">{node.pending} pending</span></article>)}</div><div className="network-notice"><Wifi size={15} /><span>Illustration only — open Sync Status for real incident delivery and pending-event information.</span></div>{full && <div className="node-footnote"><ArrowRight size={14} /> Connection and sync values are example data and do not reflect device telemetry.</div>}</section>
+}
